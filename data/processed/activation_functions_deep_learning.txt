@@ -1,0 +1,231 @@
+Activation Functions in Deep Learning
+
+==================================================
+1. Introduction
+==================================================
+
+Activation functions are a crucial component of neural networks.
+
+They introduce non-linearity into the model, allowing neural networks to learn complex patterns.
+
+Without activation functions, a neural network would behave like a linear model regardless of depth.
+
+==================================================
+2. Why Activation Functions are Important
+==================================================
+
+Activation functions are used to:
+
+- Introduce non-linearity into the model
+- Enable learning of complex patterns
+- Control output range of neurons
+- Improve model expressiveness
+- Allow deep networks to function properly
+
+They are used in almost every layer of a neural network.
+
+==================================================
+3. Sigmoid Activation Function
+==================================================
+
+Formula:
+
+σ(x) = 1 / (1 + e^(−x))
+
+--------------------------------------------------
+Characteristics:
+--------------------------------------------------
+
+- Output range: (0, 1)
+- Interpretable as probability
+- Smooth gradient
+
+--------------------------------------------------
+Advantages:
+--------------------------------------------------
+
+- Useful for binary classification output layer
+- Outputs probability-like values
+
+--------------------------------------------------
+Disadvantages:
+--------------------------------------------------
+
+- Vanishing gradient problem
+- Not zero-centered
+- Slow convergence in deep networks
+
+--------------------------------------------------
+Use Cases:
+--------------------------------------------------
+
+- Binary classification output layer
+
+==================================================
+4. Tanh Activation Function
+==================================================
+
+Formula:
+
+tanh(x)
+
+--------------------------------------------------
+Characteristics:
+--------------------------------------------------
+
+- Output range: (−1, 1)
+- Zero-centered
+
+--------------------------------------------------
+Advantages:
+--------------------------------------------------
+
+- Better than sigmoid in hidden layers
+- Zero-centered outputs improve optimization
+
+--------------------------------------------------
+Disadvantages:
+--------------------------------------------------
+
+- Still suffers from vanishing gradient problem
+
+--------------------------------------------------
+Use Cases:
+--------------------------------------------------
+
+- Hidden layers in older architectures
+
+==================================================
+5. ReLU (Rectified Linear Unit)
+==================================================
+
+Formula:
+
+ReLU(x) = max(0, x)
+
+--------------------------------------------------
+Characteristics:
+--------------------------------------------------
+
+- Output range: [0, +∞)
+- Simple and computationally efficient
+
+--------------------------------------------------
+Advantages:
+--------------------------------------------------
+
+- Fast computation
+- Reduces vanishing gradient problem
+- Works very well in deep networks
+
+--------------------------------------------------
+Disadvantages:
+--------------------------------------------------
+
+- “Dying ReLU” problem (neurons can become inactive)
+
+--------------------------------------------------
+Use Cases:
+--------------------------------------------------
+
+- Default activation in hidden layers of deep networks
+
+==================================================
+6. Leaky ReLU
+==================================================
+
+Formula:
+
+LeakyReLU(x) = x if x > 0 else 0.01x
+
+--------------------------------------------------
+Characteristics:
+--------------------------------------------------
+
+- Small slope for negative values
+- Fixes dying ReLU problem
+
+--------------------------------------------------
+Advantages:
+--------------------------------------------------
+
+- Prevents neurons from dying
+- Better gradient flow than ReLU
+
+--------------------------------------------------
+Disadvantages:
+--------------------------------------------------
+
+- Slightly more complex than ReLU
+
+==================================================
+7. Softmax Activation Function
+==================================================
+
+Formula:
+
+softmax(x_i) = e^(x_i) / Σ e^(x_j)
+
+--------------------------------------------------
+Characteristics:
+--------------------------------------------------
+
+- Converts outputs into probability distribution
+- Sum of outputs = 1
+
+--------------------------------------------------
+Advantages:
+--------------------------------------------------
+
+- Ideal for multi-class classification
+- Outputs interpretable probabilities
+
+--------------------------------------------------
+Use Cases:
+--------------------------------------------------
+
+- Final layer in multi-class classification models
+
+==================================================
+8. Comparison of Activation Functions
+==================================================
+
+Sigmoid:
+- Good for binary output
+- Weak in hidden layers
+
+Tanh:
+- Better than sigmoid
+- Still suffers from vanishing gradients
+
+ReLU:
+- Fast and efficient
+- Most commonly used
+
+Leaky ReLU:
+- Improved version of ReLU
+
+Softmax:
+- Used for multi-class outputs
+
+==================================================
+9. Key Insights
+==================================================
+
+- Activation functions are essential for deep learning performance
+- ReLU is the default choice in modern architectures
+- Softmax is used for classification outputs
+- Choice of activation affects training stability and speed
+
+==================================================
+10. Common Usage in Neural Networks
+==================================================
+
+Typical architecture:
+
+Hidden layers:
+- ReLU or Leaky ReLU
+
+Output layer:
+- Sigmoid (binary classification)
+- Softmax (multi-class classification)

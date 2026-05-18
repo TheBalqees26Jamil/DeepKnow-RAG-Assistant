@@ -1,0 +1,149 @@
+Convolutional Neural Networks (CNN) – Advanced Concepts
+
+==================================================
+1. Introduction
+==================================================
+
+Convolutional Neural Networks (CNNs) are specialized neural networks designed for processing grid-like data such as images.
+
+They work by extracting spatial features using convolution operations.
+
+This document explains advanced CNN concepts that are essential for understanding how CNNs process images internally.
+
+==================================================
+2. Filters (Kernels)
+==================================================
+
+Filters (or kernels) are small matrices used to extract features from images.
+
+How they work:
+- A filter slides over the input image
+- Performs element-wise multiplication
+- Produces a feature value
+
+Purpose of filters:
+- Detect edges
+- Detect textures
+- Detect patterns (corners, shapes)
+
+Example:
+- Edge detection filter
+- Blur filter
+- Sharpen filter
+
+Key Insight:
+Each filter learns to detect a specific feature automatically during training.
+
+==================================================
+3. Stride
+==================================================
+
+Stride defines how many pixels the filter moves at each step.
+
+Types:
+- Stride = 1 → small steps, detailed output
+- Stride = 2 or more → larger steps, smaller output
+
+Effects:
+- Larger stride reduces output size
+- Smaller stride preserves more spatial information
+
+Key Insight:
+Stride controls how much the image is downsampled during convolution.
+
+==================================================
+4. Padding
+==================================================
+
+Padding is the process of adding extra pixels (usually zeros) around the input image.
+
+Types:
+
+1. Valid Padding:
+- No padding is added
+- Output size decreases
+
+2. Same Padding:
+- Padding is added to keep output size same as input
+
+Why padding is used:
+- Preserve edge information
+- Control output dimensions
+- Prevent information loss at borders
+
+==================================================
+5. Feature Maps
+==================================================
+
+A feature map is the output produced after applying a filter to an input image.
+
+Each filter produces one feature map.
+
+If you apply multiple filters:
+- You get multiple feature maps
+- Each represents different learned features
+
+Key Insight:
+Feature maps represent what the network “sees” after convolution.
+
+==================================================
+6. Pooling Layers
+==================================================
+
+Pooling is used to reduce spatial dimensions of feature maps while keeping important information.
+
+--------------------------------------------------
+Types of Pooling:
+--------------------------------------------------
+
+1. Max Pooling:
+- Takes the maximum value in a region
+- Keeps strongest features
+
+2. Average Pooling:
+- Takes the average value in a region
+- Smooths feature maps
+
+--------------------------------------------------
+Why pooling is used:
+--------------------------------------------------
+
+- Reduces computation
+- Prevents overfitting
+- Makes model more robust to small shifts
+
+==================================================
+7. CNN Processing Pipeline
+==================================================
+
+Typical CNN flow:
+
+Input Image
+→ Convolution (Filters)
+→ Activation (ReLU)
+→ Pooling
+→ Repeated Layers
+→ Fully Connected Layer
+→ Output
+
+==================================================
+8. Key Insights
+==================================================
+
+- Filters detect visual patterns automatically
+- Stride controls movement and output size
+- Padding preserves spatial structure
+- Feature maps represent learned features
+- Pooling reduces complexity and overfitting
+
+==================================================
+9. Summary
+==================================================
+
+CNNs learn hierarchical representations:
+
+- Early layers → edges and simple patterns
+- Middle layers → shapes and textures
+- Deep layers → complex objects
+
+This makes CNNs powerful for image classification tasks.

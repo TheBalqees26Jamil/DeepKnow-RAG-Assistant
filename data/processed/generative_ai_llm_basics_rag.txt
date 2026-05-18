@@ -1,0 +1,184 @@
+Generative AI and LLM Basics (RAG Foundations)
+
+==================================================
+1. Introduction to Generative AI
+==================================================
+
+Generative AI refers to models that can generate new content such as:
+
+- Text
+- Images
+- Code
+- Audio
+
+Large Language Models (LLMs) are a subset of generative AI focused on text generation and understanding.
+
+Examples:
+- GPT models
+- Gemini
+- LLaMA
+
+==================================================
+2. What are LLMs?
+==================================================
+
+Large Language Models are deep neural networks trained on massive text datasets.
+
+They learn:
+
+- Language structure
+- Context understanding
+- Reasoning patterns
+- Knowledge representation
+
+--------------------------------------------------
+Key Idea:
+--------------------------------------------------
+
+LLMs predict the next token in a sequence.
+
+==================================================
+3. Tokens
+==================================================
+
+Tokens are the basic units of text used by LLMs.
+
+Examples:
+- Word-level tokens: "hello"
+- Subword tokens: "un", "break", "able"
+- Characters in some cases
+
+--------------------------------------------------
+Why tokens matter:
+--------------------------------------------------
+
+- Models don’t read full sentences directly
+- Everything is converted into tokens
+- Cost and performance depend on token count
+
+==================================================
+4. Embeddings
+==================================================
+
+Embeddings are numerical vector representations of text.
+
+They convert:
+Text → High-dimensional vector
+
+--------------------------------------------------
+Why embeddings are important:
+--------------------------------------------------
+
+- Capture semantic meaning
+- Similar texts have similar vectors
+- Enable similarity search
+
+--------------------------------------------------
+Use in RAG:
+--------------------------------------------------
+
+Embeddings are used to:
+- Store documents in vector databases
+- Retrieve relevant context based on similarity
+
+==================================================
+5. Prompt Engineering
+==================================================
+
+Prompt engineering is the practice of designing inputs (prompts) to guide LLM outputs.
+
+--------------------------------------------------
+Good prompts include:
+--------------------------------------------------
+
+- Clear instructions
+- Context
+- Constraints
+- Output format
+
+--------------------------------------------------
+Example:
+--------------------------------------------------
+
+Bad prompt:
+"Explain CNN"
+
+Good prompt:
+"Explain CNN in simple terms with an example and step-by-step explanation"
+
+==================================================
+6. Retrieval-Augmented Generation (RAG)
+==================================================
+
+RAG is a system that combines:
+
+- Information retrieval
+- Language model generation
+
+--------------------------------------------------
+How it works:
+--------------------------------------------------
+
+1. User asks a question
+2. System retrieves relevant documents (via embeddings)
+3. Retrieved context is passed to LLM
+4. LLM generates answer based on context
+
+--------------------------------------------------
+Why RAG is important:
+--------------------------------------------------
+
+- Reduces hallucinations
+- Uses external knowledge base
+- Allows domain-specific assistants
+
+==================================================
+7. Fine-Tuning vs RAG
+==================================================
+
+Fine-tuning:
+- Modify model weights
+- Requires training
+- Expensive
+- Better for behavior adaptation
+
+RAG:
+- Does NOT modify model
+- Uses external knowledge
+- Easier to update
+- Better for dynamic knowledge
+
+==================================================
+8. Hallucinations
+==================================================
+
+Hallucinations occur when LLMs generate incorrect or made-up information.
+
+--------------------------------------------------
+Why they happen:
+--------------------------------------------------
+
+- Model guesses missing information
+- Training data limitations
+- Lack of external grounding
+
+--------------------------------------------------
+How to reduce hallucinations:
+--------------------------------------------------
+
+- Use RAG systems
+- Provide strong context
+- Use retrieval verification
+- Add safety prompts like:
+  "Answer ONLY from provided context"
+
+==================================================
+9. Key Insights
+==================================================
+
+- LLMs are token-based predictive models
+- Embeddings enable semantic search
+- Prompt engineering controls output behavior
+- RAG improves factual accuracy
+- Fine-tuning changes model behavior, RAG provides knowledge
+- Hallucinations are a core limitation of LLMs

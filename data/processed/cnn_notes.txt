@@ -1,0 +1,28 @@
+Convolutional Neural Networks (CNN)
+
+CNNs are a class of deep neural networks mainly used for image processing tasks.
+
+Key Idea:
+Instead of connecting every neuron to every other neuron, CNNs use filters (kernels) to detect patterns in images.
+
+Main Components:
+
+1. Convolution Layer:
+- Applies filters to input image
+- Extracts features like edges, shapes, textures
+
+2. Activation Function (ReLU):
+- Adds non-linearity
+- Helps model complex patterns
+
+3. Pooling Layer:
+- Reduces spatial dimensions
+- Keeps important features only
+
+4. Fully Connected Layer:
+- Performs final classification
+
+Why CNNs are powerful:
+- Reduce number of parameters
+- Detect spatial hierarchies
+- Efficient for image tasks

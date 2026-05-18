@@ -1,0 +1,150 @@
+FAISS and Vector Databases in RAG Systems
+
+==================================================
+1. Introduction
+==================================================
+
+Vector databases are systems designed to store and search high-dimensional vectors (embeddings).
+
+They are a core component in Retrieval-Augmented Generation (RAG) systems.
+
+FAISS (Facebook AI Similarity Search) is one of the most popular libraries for efficient vector search.
+
+==================================================
+2. Why Vector Databases are Needed
+==================================================
+
+Traditional databases are not suitable for semantic search.
+
+They struggle with:
+
+- Meaning-based search
+- High-dimensional data
+- Similarity comparison between embeddings
+
+Vector databases solve this by enabling:
+
+- Fast similarity search
+- Scalable storage of embeddings
+- Semantic retrieval instead of keyword matching
+
+==================================================
+3. What is FAISS?
+==================================================
+
+FAISS is a library developed by Facebook AI Research for:
+
+- Efficient similarity search
+- Clustering dense vectors
+- Searching large-scale embedding datasets
+
+--------------------------------------------------
+Key Idea:
+--------------------------------------------------
+
+FAISS allows us to find the most similar vectors to a query vector quickly and efficiently.
+
+==================================================
+4. How FAISS Works
+==================================================
+
+Step-by-step process:
+
+1. Convert documents into embeddings
+2. Store embeddings in FAISS index
+3. Convert user query into embedding
+4. Compare query vector with stored vectors
+5. Retrieve top-k most similar results
+
+--------------------------------------------------
+Similarity methods used:
+--------------------------------------------------
+
+- L2 (Euclidean distance)
+- Inner product
+- Cosine similarity (via normalization)
+
+==================================================
+5. FAISS Index Types
+==================================================
+
+FAISS provides different index types depending on scale:
+
+1. Flat Index
+- Exact search
+- Slow but accurate
+- Good for small datasets
+
+2. IVF (Inverted File Index)
+- Faster search
+- Approximated nearest neighbors
+
+3. HNSW (Graph-based search)
+- Very fast
+- Used in modern systems
+
+==================================================
+6. Vector Databases vs FAISS
+==================================================
+
+FAISS:
+- Library
+- Runs locally
+- No server needed
+- Lightweight
+
+Vector Databases (Pinecone, Weaviate, ChromaDB):
+- Full systems
+- Cloud or hybrid
+- Include storage + API + scaling
+
+==================================================
+7. FAISS in RAG Systems
+==================================================
+
+FAISS is used in the retrieval step of RAG:
+
+Offline phase:
+- Split documents into chunks
+- Generate embeddings
+- Store embeddings in FAISS index
+
+Online phase:
+- Convert user query into embedding
+- Search FAISS index
+- Retrieve most relevant chunks
+- Send to LLM for generation
+
+==================================================
+8. Why FAISS is Perfect for Your Project
+==================================================
+
+FAISS is ideal because:
+
+- Fast and efficient
+- Easy to integrate
+- Works offline (no cloud needed)
+- Perfect for portfolio projects
+- Industry-standard tool
+
+==================================================
+9. Important Concept: Top-K Retrieval
+==================================================
+
+Instead of returning one result, FAISS returns top-k results.
+
+Example:
+
+query → returns top 3 or top 5 most similar chunks
+
+This improves context quality for LLMs.
+
+==================================================
+10. Key Insights
+==================================================
+
+- FAISS enables semantic search at scale
+- Vector databases are essential for modern AI systems
+- RAG depends heavily on FAISS or similar tools
+- Retrieval quality directly affects LLM output quality
+- Better embeddings → better FAISS search results

@@ -1,0 +1,106 @@
+Batch Normalization in Deep Learning
+
+==================================================
+1. Introduction
+==================================================
+
+Batch Normalization is a technique used to stabilize and speed up training in deep neural networks.
+
+It works by normalizing the inputs of each layer so that they have a consistent distribution during training.
+
+==================================================
+2. Why Batch Normalization is Important
+==================================================
+
+During training, the distribution of inputs to each layer can change, making learning unstable.
+
+This problem is known as:
+
+Internal Covariate Shift
+
+Batch Normalization helps by:
+
+- Stabilizing learning
+- Allowing higher learning rates
+- Reducing sensitivity to initialization
+- Improving overall performance
+
+==================================================
+3. How Batch Normalization Works
+==================================================
+
+For a mini-batch of activations:
+
+Step 1: Compute mean
+Step 2: Compute variance
+Step 3: Normalize
+Step 4: Scale and shift
+
+--------------------------------------------------
+Formula:
+--------------------------------------------------
+
+x̂ = (x − μ) / sqrt(σ² + ε)
+
+Then:
+
+y = γ x̂ + β
+
+Where:
+- μ = batch mean
+- σ² = batch variance
+- ε = small constant for numerical stability
+- γ = learnable scale parameter
+- β = learnable shift parameter
+
+==================================================
+4. Where Batch Normalization is Used
+==================================================
+
+Batch Normalization is typically applied:
+
+- After linear transformation (Wx + b)
+- Before or after activation function (depends on architecture)
+
+Common in:
+
+- CNNs
+- Deep feedforward networks
+- Modern deep architectures (ResNet, etc.)
+
+==================================================
+5. Advantages of Batch Normalization
+==================================================
+
+- Faster convergence
+- More stable training
+- Reduces vanishing/exploding gradient issues
+- Allows higher learning rates
+- Acts as a mild regularizer
+
+==================================================
+6. Disadvantages of Batch Normalization
+==================================================
+
+- Not ideal for very small batch sizes
+- Adds computation overhead
+- Different behavior during training vs inference
+
+==================================================
+7. Training vs Inference Behavior
+==================================================
+
+During training:
+- Uses batch statistics (mean and variance of current batch)
+
+During inference:
+- Uses running averages of mean and variance
+
+==================================================
+8. Key Insights
+==================================================
+
+- Batch Normalization improves training stability
+- It is widely used in modern deep learning architectures
+- It allows deeper networks to train effectively
+- It reduces sensitivity to initialization and learning rate

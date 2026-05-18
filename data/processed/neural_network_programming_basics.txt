@@ -1,0 +1,283 @@
+Deep Learning Basics: Neural Network Programming
+
+Source Context:
+Concepts inspired by introductory Deep Learning lectures and neural network programming fundamentals.
+
+==================================================
+1. Binary Classification
+==================================================
+
+Binary classification is a machine learning task where the output belongs to one of two classes.
+
+Examples:
+- Cat vs Non-Cat
+- Spam vs Not Spam
+- Hacked vs Safe
+
+Output labels:
+- 1 → Positive class
+- 0 → Negative class
+
+--------------------------------------------------
+Image Representation
+--------------------------------------------------
+
+Images are represented using three color channels:
+
+- Red
+- Green
+- Blue
+
+These are called RGB channels.
+
+Each pixel contains intensity values ranging from 0 to 255.
+
+Example:
+
+Red Channel:
+255, 231, 42, 22
+
+Green Channel:
+123, 94, 83, 2
+
+Blue Channel:
+34, 44, 187, 92
+
+These values are transformed into numerical feature vectors before being fed into a neural network.
+
+==================================================
+2. Logistic Regression
+==================================================
+
+Logistic Regression is one of the simplest neural network models used for binary classification.
+
+Prediction equation:
+
+ŷ = σ(w^T x + b)
+
+where:
+- x = input feature vector
+- w = weights
+- b = bias
+- σ = sigmoid activation function
+
+--------------------------------------------------
+Sigmoid Function
+--------------------------------------------------
+
+σ(z) = 1 / (1 + e^(−z))
+
+The sigmoid function outputs probabilities between 0 and 1.
+
+==================================================
+3. Logistic Regression Cost Function
+==================================================
+
+The goal is to make predictions:
+
+ŷ ≈ y
+
+where:
+- ŷ = predicted output
+- y = true label
+
+--------------------------------------------------
+Loss Function
+--------------------------------------------------
+
+The loss function measures prediction error for a single example.
+
+Cross Entropy Loss:
+
+L(ŷ, y) =
+− [ y log(ŷ) + (1 − y) log(1 − ŷ) ]
+
+Special cases:
+
+If y = 1:
+- Loss = −log(ŷ)
+
+If y = 0:
+- Loss = −log(1 − ŷ)
+
+--------------------------------------------------
+Cost Function on m Examples
+--------------------------------------------------
+
+The total cost across all training examples is:
+
+J(w, b) = (1/m) Σ L(ŷ^(i), y^(i))
+
+The optimization process attempts to minimize J(w, b).
+
+==================================================
+4. Gradient Descent
+==================================================
+
+Gradient Descent is an optimization algorithm used to minimize the cost function.
+
+Goal:
+Find values of:
+- w
+- b
+
+that reduce prediction error.
+
+--------------------------------------------------
+Gradient Descent Update Rule
+--------------------------------------------------
+
+Parameters are updated iteratively:
+
+w := w − α dw
+
+b := b − α db
+
+where:
+- α = learning rate
+- dw = derivative with respect to weights
+- db = derivative with respect to bias
+
+==================================================
+5. Derivatives and Intuition
+==================================================
+
+Derivatives measure how a function changes when inputs change.
+
+Examples:
+- f(x) = 3x
+- f(x) = x²
+
+Derivatives are fundamental for:
+- backpropagation
+- optimization
+- gradient descent
+
+==================================================
+6. Computation Graph
+==================================================
+
+A computation graph represents mathematical operations as a sequence of nodes.
+
+Example flow:
+x → operations → output
+
+Purpose:
+- Efficient derivative computation
+- Supports backpropagation
+
+--------------------------------------------------
+Computing Derivatives
+--------------------------------------------------
+
+Using the chain rule, gradients are propagated backward through the graph.
+
+This process is known as:
+Backpropagation
+
+==================================================
+7. Logistic Regression Derivatives
+==================================================
+
+During training:
+
+dz = a − y
+
+Gradient calculations:
+
+dw = x dz
+
+db = dz
+
+These gradients are used to update parameters.
+
+==================================================
+8. Vectorization
+==================================================
+
+Vectorization means performing operations on entire vectors or matrices instead of using explicit loops.
+
+--------------------------------------------------
+Advantages of Vectorization
+--------------------------------------------------
+
+- Faster computation
+- Cleaner code
+- Efficient GPU usage
+
+Programming guideline:
+
+Whenever possible, avoid explicit for-loops.
+
+--------------------------------------------------
+Example
+--------------------------------------------------
+
+Instead of:
+
+for i in range(n):
+    u[i] = exp(v[i])
+
+Use vectorized NumPy operations directly.
+
+==================================================
+9. Vectorized Logistic Regression
+==================================================
+
+Vectorized implementations process all training examples simultaneously using matrices.
+
+Advantages:
+- Faster training
+- Better scalability
+- Efficient linear algebra computation
+
+==================================================
+10. Broadcasting in Python
+==================================================
+
+Broadcasting allows NumPy to perform arithmetic operations on arrays of different shapes.
+
+Example applications:
+- Matrix addition
+- Scaling
+- Percentage calculations
+
+--------------------------------------------------
+Food Calories Example
+--------------------------------------------------
+
+Calories can be represented as matrices:
+
+- Carbohydrates
+- Proteins
+- Fats
+
+Operations such as normalization can be applied efficiently using broadcasting.
+
+==================================================
+11. Neural Network Programming Guidelines
+==================================================
+
+Important principles:
+
+- Use vectorization whenever possible
+- Avoid unnecessary loops
+- Use matrix operations efficiently
+- Structure computations clearly
+
+==================================================
+Key Concepts Covered
+==================================================
+
+- Binary classification
+- Logistic Regression
+- Sigmoid activation
+- Cross entropy loss
+- Cost functions
+- Gradient descent
+- Derivatives
+- Computation graphs
+- Backpropagation
+- Vectorization
+- Broadcasting
+- Neural network programming

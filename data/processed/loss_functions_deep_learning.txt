@@ -1,0 +1,160 @@
+Loss Functions in Deep Learning
+
+==================================================
+1. Introduction
+==================================================
+
+Loss functions measure how far the model's predictions are from the true values.
+
+They are used to guide the training process by quantifying the error.
+
+The goal of training is:
+
+Minimize the loss function.
+
+==================================================
+2. Why Loss Functions are Important
+==================================================
+
+Loss functions are used to:
+
+- Measure prediction error
+- Guide gradient descent updates
+- Improve model performance
+- Compare different models
+
+Without a loss function, the model cannot learn.
+
+==================================================
+3. Mean Squared Error (MSE)
+==================================================
+
+MSE is commonly used in regression problems.
+
+Formula:
+
+MSE = (1/m) Σ (y^(i) − ŷ^(i))²
+
+--------------------------------------------------
+Characteristics:
+--------------------------------------------------
+
+- Penalizes large errors more heavily
+- Smooth and continuous
+
+--------------------------------------------------
+Use Cases:
+--------------------------------------------------
+
+- Regression problems
+- Predicting continuous values
+
+==================================================
+4. Mean Absolute Error (MAE)
+==================================================
+
+MAE measures the average absolute difference between predictions and actual values.
+
+Formula:
+
+MAE = (1/m) Σ |y^(i) − ŷ^(i)|
+
+--------------------------------------------------
+Characteristics:
+--------------------------------------------------
+
+- Less sensitive to outliers than MSE
+- More robust in noisy data
+
+--------------------------------------------------
+Use Cases:
+--------------------------------------------------
+
+- Regression problems with outliers
+- Real-world noisy datasets
+
+==================================================
+5. Cross Entropy Loss
+==================================================
+
+Cross entropy is the most common loss function for classification problems.
+
+Formula:
+
+L = − [ y log(ŷ) + (1 − y) log(1 − ŷ) ]
+
+--------------------------------------------------
+Characteristics:
+--------------------------------------------------
+
+- Works well with probability outputs
+- Strong penalty for wrong confident predictions
+
+--------------------------------------------------
+Use Cases:
+--------------------------------------------------
+
+- Binary classification
+- Multi-class classification (with softmax)
+
+==================================================
+6. Hinge Loss
+==================================================
+
+Hinge loss is mainly used in Support Vector Machines (SVM).
+
+Formula:
+
+L = max(0, 1 − y * ŷ)
+
+--------------------------------------------------
+Characteristics:
+--------------------------------------------------
+
+- Encourages correct classification with margin
+- Focuses on boundary decisions
+
+--------------------------------------------------
+Use Cases:
+--------------------------------------------------
+
+- SVM models
+- Margin-based classification
+
+==================================================
+7. Comparison of Loss Functions
+==================================================
+
+MSE:
+- Regression
+- Sensitive to outliers
+
+MAE:
+- Regression
+- Robust to outliers
+
+Cross Entropy:
+- Classification
+- Most widely used in deep learning
+
+Hinge Loss:
+- Margin-based models (SVM)
+
+==================================================
+8. Choosing the Right Loss Function
+==================================================
+
+- Regression → MSE or MAE
+- Binary classification → Cross Entropy
+- Multi-class classification → Cross Entropy + Softmax
+- SVM models → Hinge Loss
+
+==================================================
+9. Key Insights
+==================================================
+
+- Loss function defines what the model learns
+- Different tasks require different losses
+- Cross entropy is the default for deep learning classification
+- MSE is common for regression but not ideal for classification
+- Loss + optimizer together define training behavior

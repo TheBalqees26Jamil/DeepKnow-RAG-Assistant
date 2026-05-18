@@ -1,0 +1,164 @@
+Regularization in Deep Learning
+
+==================================================
+1. Introduction
+==================================================
+
+Regularization refers to a set of techniques used to reduce overfitting in machine learning models.
+
+The main goal is to improve the model's ability to generalize to unseen data.
+
+In deep learning, models can easily overfit due to their high capacity.
+
+==================================================
+2. Overfitting vs Underfitting
+==================================================
+
+--------------------------------------------------
+Overfitting
+--------------------------------------------------
+
+Occurs when the model:
+
+- Learns training data too well
+- Captures noise and irrelevant patterns
+- Performs well on training data but poorly on test data
+
+Signs of overfitting:
+- High training accuracy
+- Low validation accuracy
+
+--------------------------------------------------
+Underfitting
+--------------------------------------------------
+
+Occurs when the model:
+
+- Is too simple
+- Fails to learn patterns in data
+- Performs poorly on both training and test data
+
+Signs of underfitting:
+- Low training accuracy
+- Low validation accuracy
+
+==================================================
+3. Why Regularization is Needed
+==================================================
+
+Regularization helps to:
+
+- Reduce overfitting
+- Improve generalization
+- Make models more robust
+- Prevent memorization of training data
+
+==================================================
+4. L2 Regularization (Ridge)
+==================================================
+
+L2 regularization adds a penalty proportional to the square of weights.
+
+Cost function becomes:
+
+J = original_loss + λ Σ W²
+
+Where:
+- λ (lambda) controls regularization strength
+- Large weights are penalized more
+
+Effects:
+- Encourages small weights
+- Reduces model complexity
+- Helps prevent overfitting
+
+==================================================
+5. L1 Regularization (Lasso)
+==================================================
+
+L1 regularization adds a penalty proportional to absolute value of weights.
+
+J = original_loss + λ Σ |W|
+
+Effects:
+
+- Encourages sparsity
+- Some weights become exactly zero
+- Performs feature selection automatically
+
+==================================================
+6. Dropout Regularization
+==================================================
+
+Dropout randomly deactivates neurons during training.
+
+How it works:
+- Each neuron is dropped with probability p during training
+- Remaining neurons learn more robust features
+
+Advantages:
+- Prevents co-adaptation of neurons
+- Reduces overfitting
+- Improves generalization
+
+Important:
+- Dropout is only used during training
+- Disabled during testing
+
+==================================================
+7. Early Stopping
+==================================================
+
+Early stopping stops training when validation performance stops improving.
+
+How it works:
+- Monitor validation loss
+- Stop training when loss starts increasing
+
+Advantages:
+- Prevents overfitting
+- Saves training time
+- Simple and effective
+
+==================================================
+8. Regularization Techniques Summary
+==================================================
+
+L2 Regularization:
+- Shrinks weights
+- Smooth model
+
+L1 Regularization:
+- Produces sparse weights
+- Feature selection
+
+Dropout:
+- Random neuron deactivation
+- Forces redundancy learning
+
+Early Stopping:
+- Stops training at optimal point
+- Prevents overtraining
+
+==================================================
+9. Overfitting Prevention Strategies
+==================================================
+
+Common techniques include:
+
+- Regularization (L1, L2)
+- Dropout
+- Early stopping
+- Data augmentation
+- Using simpler models
+- More training data
+
+==================================================
+10. Key Insights
+==================================================
+
+- Overfitting is one of the most common problems in deep learning
+- Regularization improves generalization performance
+- Dropout is widely used in deep neural networks
+- L2 is the most commonly used penalty method
+- Early stopping is simple but very effective

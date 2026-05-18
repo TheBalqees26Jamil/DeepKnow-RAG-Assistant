@@ -1,0 +1,132 @@
+Training Problems in Deep Learning
+
+==================================================
+1. Introduction
+==================================================
+
+Training deep neural networks is not always stable.
+
+During training, several problems can occur that affect learning performance, such as:
+
+- Vanishing gradients
+- Exploding gradients
+- Dead ReLU problem
+
+These issues can slow down training or completely prevent learning.
+
+==================================================
+2. Vanishing Gradients
+==================================================
+
+Definition:
+Vanishing gradients occur when gradients become extremely small during backpropagation.
+
+Effect:
+- Early layers learn very slowly or stop learning
+- Training becomes inefficient
+
+Why it happens:
+- Deep networks
+- Sigmoid or tanh activations
+- Repeated multiplication of small derivatives
+
+--------------------------------------------------
+Symptoms:
+--------------------------------------------------
+
+- Loss decreases very slowly
+- Early layers show almost no updates
+- Model stops improving
+
+--------------------------------------------------
+Solutions:
+--------------------------------------------------
+
+- Use ReLU activation instead of sigmoid/tanh
+- Use better weight initialization
+- Use batch normalization
+- Use residual connections (ResNet)
+
+==================================================
+3. Exploding Gradients
+==================================================
+
+Definition:
+Exploding gradients occur when gradients become extremely large during backpropagation.
+
+Effect:
+- Unstable training
+- Loss becomes NaN or diverges
+- Model parameters become too large
+
+--------------------------------------------------
+Symptoms:
+--------------------------------------------------
+
+- Loss becomes very large suddenly
+- Model fails to converge
+- Weights grow uncontrollably
+
+--------------------------------------------------
+Solutions:
+--------------------------------------------------
+
+- Gradient clipping
+- Proper weight initialization
+- Using smaller learning rate
+- Using normalization techniques
+
+==================================================
+4. Dead ReLU Problem
+==================================================
+
+Definition:
+Dead ReLU occurs when neurons always output zero and stop learning.
+
+Why it happens:
+ReLU outputs zero for negative inputs.
+If a neuron gets stuck in negative region, it never activates again.
+
+--------------------------------------------------
+Effect:
+--------------------------------------------------
+
+- Neurons become inactive permanently
+- Model loses capacity
+- Reduced performance
+
+--------------------------------------------------
+Symptoms:
+--------------------------------------------------
+
+- Many neurons output zero
+- Reduced model learning ability
+
+--------------------------------------------------
+Solutions:
+--------------------------------------------------
+
+- Use Leaky ReLU instead of ReLU
+- Use proper learning rates
+- Use better initialization
+
+==================================================
+5. Relationship Between Problems
+==================================================
+
+These problems are often connected:
+
+- Vanishing gradients → slow learning
+- Exploding gradients → unstable learning
+- Dead ReLU → inactive neurons
+
+All affect the training process in different ways.
+
+==================================================
+6. Key Insights
+==================================================
+
+- Deep networks are prone to training instability
+- Activation functions strongly influence gradient behavior
+- Proper initialization and normalization are critical
+- Modern architectures (ResNet, BatchNorm) were designed to solve these issues

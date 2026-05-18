@@ -1,0 +1,19 @@
+Backpropagation
+
+Backpropagation is the algorithm used to train neural networks.
+
+How it works:
+
+1. Forward pass:
+- Input goes through the network
+- Output is predicted
+
+2. Loss calculation:
+- Compare prediction with true label
+
+3. Backward pass:
+- Compute gradients of loss
+- Update weights using gradient descent
+
+Key concept:
+It uses the chain rule from calculus to compute gradients efficiently.

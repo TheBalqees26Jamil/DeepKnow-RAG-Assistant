@@ -1,0 +1,265 @@
+Deep Neural Network for Image Classification
+
+==================================================
+1. Project Overview
+==================================================
+
+This project focuses on building a Deep Neural Network for image classification.
+
+The main objective is to create a classifier that can distinguish between:
+
+- Cat images
+- Non-cat images
+
+The project extends previous Logistic Regression implementations by introducing a deeper neural network architecture.
+
+==================================================
+2. Learning Objectives
+==================================================
+
+After completing this project, the learner should be able to:
+
+- Build a deep L-layer neural network
+- Train a neural network using supervised learning
+- Apply forward propagation and backpropagation
+- Use activation functions in hidden and output layers
+- Improve classification accuracy compared to Logistic Regression
+- Understand neural network training workflows
+
+==================================================
+3. Deep Neural Networks
+==================================================
+
+A Deep Neural Network (DNN) consists of multiple hidden layers between the input and output layers.
+
+General architecture:
+
+Input Layer
+→ Hidden Layers
+→ Output Layer
+
+--------------------------------------------------
+Advantages of Deep Networks
+--------------------------------------------------
+
+Compared to shallow models, deep networks can:
+
+- Learn complex patterns
+- Extract hierarchical features
+- Improve prediction accuracy
+- Handle image classification tasks more effectively
+
+==================================================
+4. Image Classification
+==================================================
+
+Image classification is a supervised learning task where a model predicts the category of an image.
+
+Example:
+- Cat → label 1
+- Non-cat → label 0
+
+--------------------------------------------------
+Input Representation
+--------------------------------------------------
+
+Images are converted into numerical vectors before being processed by the neural network.
+
+For RGB images:
+- Red channel
+- Green channel
+- Blue channel
+
+Example image size:
+
+64 × 64 × 3
+
+Flattened input dimension:
+
+12288 features
+
+==================================================
+5. Forward Propagation
+==================================================
+
+Forward propagation computes predictions through the neural network.
+
+For each layer:
+
+Z^[l] = W^[l] A^[l−1] + b^[l]
+
+A^[l] = g(Z^[l])
+
+where:
+- W^[l] = weights
+- b^[l] = biases
+- g = activation function
+
+--------------------------------------------------
+Activation Functions
+--------------------------------------------------
+
+Common activation functions:
+
+- ReLU
+- Sigmoid
+- Tanh
+
+Hidden layers often use:
+- ReLU
+
+Output layer for binary classification:
+- Sigmoid
+
+==================================================
+6. Cost Function
+==================================================
+
+The model uses a cost function to measure prediction error.
+
+For binary classification, Cross Entropy Loss is commonly used:
+
+J = −(1/m) Σ [
+y log(ŷ)
++ (1 − y) log(1 − ŷ)
+]
+
+Goal:
+Minimize the cost function during training.
+
+==================================================
+7. Backpropagation
+==================================================
+
+Backpropagation computes gradients used to update network parameters.
+
+Main steps:
+1. Compute prediction error
+2. Calculate gradients
+3. Update weights and biases
+
+This process enables the network to learn from data.
+
+==================================================
+8. Gradient Descent
+==================================================
+
+Gradient Descent is used to optimize parameters.
+
+Update rules:
+
+W := W − α dW
+
+b := b − α db
+
+where:
+- α = learning rate
+
+==================================================
+9. Neural Network Training Pipeline
+==================================================
+
+Typical workflow:
+
+1. Load dataset
+2. Initialize parameters
+3. Forward propagation
+4. Compute cost
+5. Backpropagation
+6. Update parameters
+7. Repeat for multiple iterations
+
+==================================================
+10. Logistic Regression vs Deep Neural Networks
+==================================================
+
+Logistic Regression:
+- Linear decision boundary
+- Simpler model
+- Limited representation power
+
+Deep Neural Networks:
+- Multiple hidden layers
+- Learn nonlinear relationships
+- Better performance on complex image tasks
+
+==================================================
+11. Supervised Learning
+==================================================
+
+This project uses supervised learning.
+
+Meaning:
+- Inputs are paired with correct labels
+- The model learns mappings from examples
+
+Example:
+Input image → Correct label
+
+==================================================
+12. Neural Network Parameters
+==================================================
+
+Trainable parameters include:
+
+- Weight matrices
+- Bias vectors
+
+The optimization process adjusts these values to reduce prediction error.
+
+==================================================
+13. Model Evaluation
+==================================================
+
+Model performance is evaluated using:
+
+- Accuracy
+- Training cost
+- Prediction quality
+
+A successful model should classify unseen images correctly.
+
+==================================================
+14. Common Deep Learning Concepts Covered
+==================================================
+
+- Deep Neural Networks
+- Image Classification
+- Binary Classification
+- Forward Propagation
+- Backpropagation
+- Gradient Descent
+- Activation Functions
+- Cross Entropy Loss
+- Supervised Learning
+- Neural Network Training
+
+==================================================
+15. Programming Assignment Guidelines
+==================================================
+
+Important implementation practices:
+
+- Avoid unnecessary print statements
+- Do not modify function parameters
+- Avoid unnecessary global variables
+- Keep notebook structure clean
+- Maintain reproducible code
+
+These practices improve:
+- Debugging
+- Auto-grading compatibility
+- Code maintainability
+
+==================================================
+Key Concepts Covered
+==================================================
+
+- Deep learning workflow
+- Cat vs non-cat classification
+- Neural network architecture
+- Model training
+- Cost optimization
+- Forward and backward propagation
+- Neural network implementation
+- Supervised image learning

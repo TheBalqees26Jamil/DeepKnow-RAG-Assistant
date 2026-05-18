@@ -1,0 +1,151 @@
+Evaluation Metrics in Machine Learning
+
+==================================================
+1. Introduction
+==================================================
+
+Evaluation metrics are used to measure the performance of a machine learning model.
+
+They help answer the question:
+
+"How good is the model at making predictions?"
+
+Different metrics are used depending on the problem type (classification or regression).
+
+This document focuses on classification metrics.
+
+==================================================
+2. Confusion Matrix
+==================================================
+
+The confusion matrix is the foundation of classification evaluation.
+
+It is a table that compares:
+
+- Predicted labels
+- Actual labels
+
+--------------------------------------------------
+Structure:
+--------------------------------------------------
+
+                Predicted
+              0         1
+Actual 0    TN        FP
+       1    FN        TP
+
+Where:
+
+- TP (True Positive): correctly predicted positive
+- TN (True Negative): correctly predicted negative
+- FP (False Positive): incorrect positive prediction
+- FN (False Negative): incorrect negative prediction
+
+==================================================
+3. Accuracy
+==================================================
+
+Accuracy measures the proportion of correct predictions.
+
+Formula:
+
+Accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+--------------------------------------------------
+Interpretation:
+--------------------------------------------------
+
+- High accuracy means most predictions are correct
+- Not reliable when dataset is imbalanced
+
+==================================================
+4. Precision
+==================================================
+
+Precision measures how many predicted positives are actually correct.
+
+Formula:
+
+Precision = TP / (TP + FP)
+
+--------------------------------------------------
+Interpretation:
+--------------------------------------------------
+
+- High precision → few false positives
+- Important when false positives are costly
+
+Example:
+- Spam detection (avoiding marking real emails as spam)
+
+==================================================
+5. Recall
+==================================================
+
+Recall measures how many actual positives are correctly identified.
+
+Formula:
+
+Recall = TP / (TP + FN)
+
+--------------------------------------------------
+Interpretation:
+--------------------------------------------------
+
+- High recall → few false negatives
+- Important when missing positives is dangerous
+
+Example:
+- Disease detection (missing a sick patient is risky)
+
+==================================================
+6. F1-Score
+==================================================
+
+F1-score is the harmonic mean of precision and recall.
+
+Formula:
+
+F1 = 2 * (Precision * Recall) / (Precision + Recall)
+
+--------------------------------------------------
+Why it is used:
+--------------------------------------------------
+
+- Balances precision and recall
+- Useful when dataset is imbalanced
+
+==================================================
+7. Trade-offs Between Metrics
+==================================================
+
+- Increasing precision may decrease recall
+- Increasing recall may decrease precision
+
+There is always a trade-off depending on the application.
+
+==================================================
+8. When to Use Each Metric
+==================================================
+
+Accuracy:
+- Balanced datasets
+
+Precision:
+- When false positives are costly
+
+Recall:
+- When false negatives are costly
+
+F1-score:
+- When balance between precision and recall is needed
+
+==================================================
+9. Key Insights
+==================================================
+
+- Confusion matrix is the base of all classification metrics
+- Accuracy alone is not enough for evaluation
+- Precision and recall provide deeper insight
+- F1-score balances both
+- Metric selection depends on real-world problem

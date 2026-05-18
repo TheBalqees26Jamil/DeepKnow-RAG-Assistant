@@ -1,0 +1,155 @@
+Logistic Regression: Cost Function
+
+This document explains the loss function and cost function used in Logistic Regression.
+
+==================================================
+1. Logistic Regression Prediction
+==================================================
+
+In Logistic Regression, the predicted output is:
+
+ŷ^(i) = σ(w^T x^(i) + b)
+
+where:
+
+- x^(i):
+  Input feature vector for the ith training example.
+
+- w:
+  Weight vector.
+
+- b:
+  Bias term.
+
+- σ(z):
+  Sigmoid activation function.
+
+--------------------------------------------------
+Sigmoid Function
+--------------------------------------------------
+
+σ(z) = 1 / (1 + e^(−z))
+
+The sigmoid function maps values into the range:
+
+0 → 1
+
+This makes Logistic Regression suitable for binary classification problems.
+
+==================================================
+2. Training Objective
+==================================================
+
+Given a dataset:
+
+{ (x^(1), y^(1)), ..., (x^(m), y^(m)) }
+
+the goal is to learn parameters:
+
+w and b
+
+such that:
+
+ŷ^(i) ≈ y^(i)
+
+where:
+- ŷ^(i) is the predicted label
+- y^(i) is the true label
+
+==================================================
+3. Loss Function
+==================================================
+
+The loss function measures the error for a single training example.
+
+--------------------------------------------------
+Mean Squared Error (MSE)
+--------------------------------------------------
+
+One possible loss function is:
+
+L(ŷ^(i), y^(i)) = (1/2) (ŷ^(i) − y^(i))²
+
+However, Mean Squared Error is generally not preferred for Logistic Regression because it leads to non-convex optimization problems.
+
+==================================================
+4. Cross Entropy Loss
+==================================================
+
+The most common loss function for Logistic Regression is Cross Entropy Loss:
+
+L(ŷ^(i), y^(i)) =
+− [ y^(i) log(ŷ^(i))
++ (1 − y^(i)) log(1 − ŷ^(i)) ]
+
+--------------------------------------------------
+Case 1: y^(i) = 1
+--------------------------------------------------
+
+If the true label is 1:
+
+L = −log(ŷ^(i))
+
+The prediction ŷ^(i) should be close to 1 to minimize loss.
+
+--------------------------------------------------
+Case 2: y^(i) = 0
+--------------------------------------------------
+
+If the true label is 0:
+
+L = −log(1 − ŷ^(i))
+
+The prediction ŷ^(i) should be close to 0 to minimize loss.
+
+==================================================
+5. Cost Function
+==================================================
+
+The cost function is the average loss across the entire training dataset.
+
+The goal of training is to minimize this cost function.
+
+General form:
+
+J(w, b) = (1/m) Σ L(ŷ^(i), y^(i))
+
+Expanded form:
+
+J(w, b) =
+− (1/m) Σ [
+y^(i) log(ŷ^(i))
++ (1 − y^(i)) log(1 − ŷ^(i))
+]
+
+where:
+- m is the number of training examples.
+
+==================================================
+6. Optimization Goal
+==================================================
+
+Training Logistic Regression involves finding parameters:
+
+w and b
+
+that minimize the cost function.
+
+This optimization is commonly performed using:
+
+- Gradient Descent
+- Stochastic Gradient Descent (SGD)
+- Mini-batch Gradient Descent
+
+==================================================
+Key Concepts Covered
+==================================================
+
+- Logistic Regression
+- Sigmoid activation function
+- Binary classification
+- Loss function
+- Cross Entropy Loss
+- Cost function
+- Optimization objective
+- Gradient-based learning

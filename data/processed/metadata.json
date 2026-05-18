@@ -1,0 +1,33 @@
+{
+  "project_name": "DeepKnow RAG Assistant",
+  "description": "A domain-specific Retrieval-Augmented Generation system for Deep Learning knowledge.",
+  "dataset_type": "curated_txt_dataset",
+  "num_documents": 23,
+  "documents": [
+    "loss_functions.txt",
+    "optimization_algorithms.txt",
+    "regularization.txt",
+    "batch_normalization.txt",
+    "cnn_advanced.txt",
+    "sequence_models_attention.txt",
+    "transfer_learning.txt",
+    "training_problems.txt",
+    "evaluation_metrics.txt",
+    "generative_ai_llm_basics.txt",
+    "embeddings_vector_search.txt",
+    "faiss_vector_db.txt",
+    "prompt_engineering.txt",
+    "deep_learning_fundamentals.txt"
+  ],
+  "pipeline_stages": [
+    "ingestion",
+    "chunking",
+    "embeddings",
+    "vector_db",
+    "retrieval",
+    "llm_generation"
+  ],
+  "created_for": "portfolio_project",
+  "author": "Balqees",
+  "notes": "All documents are manually curated deep learning notes designed for RAG system."
+}

@@ -1,0 +1,214 @@
+Standard Notations for Deep Learning
+
+This document introduces common mathematical notations used in Deep Learning and Neural Networks.
+
+==================================================
+1. Neural Network Notations
+==================================================
+
+General Conventions:
+- Superscript (i) denotes the ith training example.
+- Superscript [l] denotes the lth layer in the neural network.
+
+--------------------------------------------------
+Dataset and Network Sizes
+--------------------------------------------------
+
+m:
+- Number of training examples in the dataset.
+
+n_x:
+- Input size (number of input features).
+
+n_y:
+- Output size or number of output classes.
+
+n_h^[l]:
+- Number of hidden units in layer l.
+
+L:
+- Total number of layers in the neural network.
+
+In some notations:
+- n_x = n^[0]
+- n_y = n_h^[L+1]
+
+--------------------------------------------------
+Input and Output Representations
+--------------------------------------------------
+
+X ∈ R^(n_x × m):
+- Input matrix containing all training examples.
+
+x^(i) ∈ R^(n_x):
+- ith training example represented as a column vector.
+
+Y ∈ R^(n_y × m):
+- Label matrix.
+
+y^(i) ∈ R^(n_y):
+- True label for the ith training example.
+
+--------------------------------------------------
+Weights and Biases
+--------------------------------------------------
+
+W^[l]:
+- Weight matrix for layer l.
+- Shape:
+(number of units in next layer × number of units in previous layer)
+
+b^[l]:
+- Bias vector for layer l.
+
+--------------------------------------------------
+Predicted Output
+--------------------------------------------------
+
+ŷ ∈ R^(n_y):
+- Predicted output vector.
+
+It can also be represented as:
+a^[L]
+
+where L is the final layer of the network.
+
+==================================================
+2. Forward Propagation Equations
+==================================================
+
+General Forward Propagation Formula:
+
+a^[l] = g^[l](W^[l] a^[l−1] + b^[l])
+
+where:
+- g^[l] is the activation function of layer l
+- z^[l] = W^[l] a^[l−1] + b^[l]
+
+Neuron-wise Representation:
+
+a_j^[l] = g^[l]( Σ_k W_jk^[l] a_k^[l−1] + b_j^[l] )
+
+--------------------------------------------------
+Softmax Example
+--------------------------------------------------
+
+ŷ^(i) = softmax(W_h h + b_2)
+
+Softmax is commonly used in classification problems to generate probabilities across multiple classes.
+
+==================================================
+3. Cost Functions
+==================================================
+
+The cost function is represented as:
+
+J(x, W, b, y)
+
+or
+
+J(ŷ, y)
+
+--------------------------------------------------
+Cross Entropy Loss
+--------------------------------------------------
+
+J_CE(ŷ, y) = − Σ y^(i) log(ŷ^(i))
+
+Cross entropy is widely used in classification tasks.
+
+--------------------------------------------------
+L1 Loss
+--------------------------------------------------
+
+J_L1(ŷ, y) = Σ | y^(i) − ŷ^(i) |
+
+L1 loss measures the absolute difference between predictions and actual labels.
+
+==================================================
+4. Deep Learning Representations
+==================================================
+
+In neural network diagrams:
+
+- Nodes represent:
+  - Inputs
+  - Activations
+  - Outputs
+
+- Edges represent:
+  - Weights
+  - Biases
+
+Common representations:
+- Comprehensive network diagrams
+- Simplified network diagrams
+
+==================================================
+5. Binary Classification
+==================================================
+
+Binary classification problems produce discrete outputs:
+
+Examples:
+- Account hacked (1) or not hacked (0)
+- Malignant tumor (1) or benign tumor (0)
+
+--------------------------------------------------
+Cat vs Non-Cat Example
+--------------------------------------------------
+
+Goal:
+Train a classifier that predicts whether an image contains a cat.
+
+Input:
+- Image represented as feature vector x
+
+Output:
+- y = 1 → Cat image
+- y = 0 → Non-cat image
+
+--------------------------------------------------
+Image Representation
+--------------------------------------------------
+
+A colored image is stored using three matrices:
+
+- Red channel
+- Green channel
+- Blue channel
+
+These are called RGB channels.
+
+For a 64 × 64 image:
+- Each RGB matrix has size 64 × 64
+
+Total input dimension:
+
+n = 64 × 64 × 3 = 12288
+
+--------------------------------------------------
+Feature Vector Construction
+--------------------------------------------------
+
+To create the input vector x:
+
+- Pixel values from RGB channels are unrolled (flattened)
+- Combined into a single feature vector
+
+This vector becomes the input to the neural network classifier.
+
+==================================================
+Key Concepts Covered
+==================================================
+
+- Neural network notation
+- Layer representations
+- Weight matrices and biases
+- Forward propagation
+- Activation functions
+- Cost functions
+- Binary classification
+- Image representation
+- Feature vectors
+- CNN-related image preprocessing concepts

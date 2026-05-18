@@ -1,0 +1,15 @@
+Transformers
+
+Transformers are a neural network architecture based on attention mechanisms.
+
+Key Idea:
+Instead of processing data sequentially (like RNNs), transformers process all tokens in parallel using self-attention.
+
+Main Component:
+Self-Attention:
+- Determines which words are important in a sentence
+
+Advantages:
+- Parallel processing
+- Better long-range dependencies
+- Foundation of modern LLMs

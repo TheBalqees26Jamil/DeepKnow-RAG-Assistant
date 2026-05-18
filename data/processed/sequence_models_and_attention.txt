@@ -1,0 +1,206 @@
+Sequence Models and Attention Mechanism in Deep Learning
+
+==================================================
+PART 1: SEQUENCE MODELS
+==================================================
+
+==================================================
+1. Introduction to Sequence Models
+==================================================
+
+Sequence models are designed to process sequential data where order matters.
+
+Examples of sequential data:
+- Text (sentences)
+- Speech signals
+- Time series data
+- DNA sequences
+
+Unlike standard neural networks, sequence models consider previous inputs when processing current inputs.
+
+==================================================
+2. Recurrent Neural Networks (RNN)
+==================================================
+
+RNNs are neural networks with memory.
+
+Key idea:
+- Output depends on current input + previous hidden state
+
+Formula idea:
+
+h_t = f(Wx x_t + Wh h_(t-1))
+
+--------------------------------------------------
+Limitations of RNNs:
+--------------------------------------------------
+
+- Difficulty learning long-term dependencies
+- Vanishing gradient problem
+- Short memory span
+
+==================================================
+3. LSTM (Long Short-Term Memory)
+==================================================
+
+LSTM is a special type of RNN designed to solve vanishing gradient problems.
+
+Key idea:
+LSTM introduces a memory cell that can store information for long periods.
+
+Main components:
+
+- Cell state (long-term memory)
+- Input gate
+- Forget gate
+- Output gate
+
+--------------------------------------------------
+Why LSTM is powerful:
+--------------------------------------------------
+
+- Remembers long-term dependencies
+- Works better than vanilla RNN
+- Used in NLP and time series forecasting
+
+==================================================
+4. GRU (Gated Recurrent Unit)
+==================================================
+
+GRU is a simplified version of LSTM.
+
+Key idea:
+- Combines forget and input gates into one update gate
+
+Advantages:
+- Fewer parameters than LSTM
+- Faster training
+- Similar performance in many tasks
+
+==================================================
+5. Sequence-to-Sequence Models
+==================================================
+
+Sequence-to-sequence (Seq2Seq) models map an input sequence to an output sequence.
+
+Architecture:
+
+Encoder → Decoder
+
+--------------------------------------------------
+Examples:
+--------------------------------------------------
+
+- Machine translation
+- Text summarization
+- Chatbots
+
+--------------------------------------------------
+How it works:
+--------------------------------------------------
+
+Encoder:
+- Processes input sequence
+- Produces context vector
+
+Decoder:
+- Generates output sequence step by step
+
+==================================================
+PART 2: ATTENTION MECHANISM
+==================================================
+
+==================================================
+6. Why Attention?
+==================================================
+
+Traditional sequence models compress all information into a single vector.
+
+Problem:
+- Information bottleneck
+- Loss of long-range dependencies
+
+Solution:
+- Attention allows model to focus on relevant parts of input.
+
+==================================================
+7. Self-Attention
+==================================================
+
+Self-attention allows each token in a sequence to look at all other tokens.
+
+Key idea:
+Each word decides which other words are important.
+
+Example:
+In a sentence, a word can “attend” to other words that provide context.
+
+==================================================
+8. Query, Key, Value (QKV)
+==================================================
+
+Self-attention is based on three vectors:
+
+- Query (Q): what I am looking for
+- Key (K): what I contain
+- Value (V): the actual information
+
+Attention formula idea:
+
+Attention(Q, K, V) =
+softmax(QK^T / sqrt(d_k)) V
+
+--------------------------------------------------
+Intuition:
+--------------------------------------------------
+
+- Query asks a question
+- Keys are compared with Query
+- Values are aggregated based on similarity
+
+==================================================
+9. Multi-Head Attention
+==================================================
+
+Instead of using one attention mechanism, we use multiple heads.
+
+Each head:
+- Learns different relationships
+- Focuses on different parts of input
+
+Final output:
+- Concatenation of all heads
+
+==================================================
+10. Why Multi-Head Attention is Powerful
+==================================================
+
+- Captures multiple relationships simultaneously
+- Improves representation power
+- Core building block of Transformers
+
+==================================================
+11. Sequence Models vs Attention
+==================================================
+
+RNN/LSTM/GRU:
+- Sequential processing
+- Slow for long sequences
+- Limited long-term memory
+
+Attention:
+- Parallel processing
+- Captures long-range dependencies
+- More scalable
+- Foundation of modern LLMs
+
+==================================================
+12. Key Insights
+==================================================
+
+- Sequence models handle ordered data
+- LSTM and GRU improve memory in RNNs
+- Seq2Seq models map input sequences to output sequences
+- Attention removes memory bottleneck
+- Self-attention is core of Transformers
+- QKV mechanism enables context-aware learning

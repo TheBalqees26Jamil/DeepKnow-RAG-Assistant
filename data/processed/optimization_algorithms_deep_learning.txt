@@ -1,0 +1,198 @@
+Optimization Algorithms in Deep Learning
+
+==================================================
+1. Introduction
+==================================================
+
+Optimization algorithms are used in deep learning to minimize the cost (loss) function by updating model parameters (weights and biases).
+
+The main goal is:
+
+Find parameters that minimize:
+J(w, b)
+
+==================================================
+2. Why Optimization is Important
+==================================================
+
+Optimization algorithms are responsible for:
+
+- Improving model accuracy
+- Reducing training error
+- Speeding up convergence
+- Stabilizing training process
+
+Without optimization, neural networks cannot learn effectively.
+
+==================================================
+3. Gradient Descent (Base Algorithm)
+==================================================
+
+Gradient Descent is the foundation of most optimization algorithms.
+
+Update rule:
+
+w := w − α * dw  
+b := b − α * db
+
+where:
+- α = learning rate
+- dw = gradient of cost w.r.t weights
+- db = gradient of cost w.r.t bias
+
+--------------------------------------------------
+Types of Gradient Descent:
+--------------------------------------------------
+
+1. Batch Gradient Descent:
+- Uses full dataset for each update
+- Slow but stable
+
+2. Stochastic Gradient Descent (SGD):
+- Uses one example per update
+- Fast but noisy
+
+3. Mini-Batch Gradient Descent:
+- Uses small batches of data
+- Best balance between speed and stability
+
+==================================================
+4. Stochastic Gradient Descent (SGD)
+==================================================
+
+SGD updates parameters using a single training example at a time.
+
+Advantages:
+- Fast updates
+- Works well for large datasets
+
+Disadvantages:
+- Noisy updates
+- Can oscillate around minimum
+
+==================================================
+5. Mini-Batch Gradient Descent
+==================================================
+
+Mini-batch Gradient Descent splits data into small batches.
+
+Each update uses a batch of examples instead of one or all.
+
+Advantages:
+- Faster than batch gradient descent
+- More stable than SGD
+- Efficient for GPU computation
+
+Most commonly used in practice.
+
+==================================================
+6. Momentum Optimization
+==================================================
+
+Momentum improves gradient descent by accumulating past gradients.
+
+Idea:
+- Build velocity in correct direction
+- Reduce oscillations
+
+Update equations:
+
+v := βv + (1 − β) * dw  
+w := w − αv
+
+where:
+- β = momentum term (usually 0.9)
+
+Advantages:
+- Faster convergence
+- Reduces oscillations
+- Helps escape shallow local minima
+
+==================================================
+7. RMSProp (Root Mean Square Propagation)
+==================================================
+
+RMSProp adapts learning rate for each parameter.
+
+Idea:
+- Divide learning rate by moving average of squared gradients
+
+Update idea:
+
+Sdw := βSdw + (1 − β)(dw²)
+
+w := w − α * dw / sqrt(Sdw + ε)
+
+Advantages:
+- Works well for non-stationary objectives
+- Stabilizes training
+- Handles different gradient scales
+
+==================================================
+8. Adam Optimizer (Adaptive Moment Estimation)
+==================================================
+
+Adam combines:
+- Momentum
+- RMSProp
+
+It is one of the most widely used optimizers.
+
+Key idea:
+- Uses moving averages of both gradients and squared gradients
+
+Update components:
+
+1. Momentum term (first moment)
+2. RMSProp term (second moment)
+
+Advantages:
+- Fast convergence
+- Works well in most cases
+- Default optimizer in many deep learning models
+
+==================================================
+9. Comparison of Optimizers
+==================================================
+
+SGD:
+- Simple
+- Noisy
+- Slower convergence
+
+Mini-batch GD:
+- Balanced
+- Most commonly used
+
+Momentum:
+- Faster than SGD
+- Reduces oscillations
+
+RMSProp:
+- Adaptive learning rate
+- Stable training
+
+Adam:
+- Best general-purpose optimizer
+- Combines Momentum + RMSProp
+
+==================================================
+10. Key Insights
+==================================================
+
+- Optimization controls how neural networks learn
+- Adam is usually the default choice
+- Mini-batch gradient descent is standard in practice
+- Momentum helps accelerate convergence
+- RMSProp stabilizes training in deep networks
+
+==================================================
+11. Practical Usage in Deep Learning
+==================================================
+
+Typical training setup:
+
+- Loss function: Cross Entropy
+- Optimizer: Adam
+- Batch size: 32–128
+- Learning rate: 0.001 (common starting point)

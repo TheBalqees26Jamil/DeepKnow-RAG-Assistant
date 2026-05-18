@@ -1,0 +1,17 @@
+Recurrent Neural Networks (RNN)
+
+RNNs are designed for sequential data such as text, time series, and speech.
+
+Key Idea:
+RNNs have memory, meaning they consider previous inputs when processing current input.
+
+Problem:
+Vanishing gradient problem makes it hard to learn long-term dependencies.
+
+Solution:
+LSTM and GRU were introduced to solve this issue.
+
+Applications:
+- Language modeling
+- Speech recognition
+- Time series prediction

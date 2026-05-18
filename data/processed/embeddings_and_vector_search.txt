@@ -1,0 +1,159 @@
+Embeddings and Vector Search in Deep Learning
+
+==================================================
+1. Introduction
+==================================================
+
+Embeddings are dense vector representations of data such as text, images, or audio.
+
+In NLP, embeddings convert text into numerical vectors that capture semantic meaning.
+
+Instead of comparing words directly, we compare vectors.
+
+==================================================
+2. Sentence Embeddings
+==================================================
+
+Sentence embeddings represent an entire sentence as a single vector.
+
+Examples:
+- "I love machine learning"
+- "I enjoy AI"
+
+These sentences will have similar embeddings because they share similar meaning.
+
+--------------------------------------------------
+Key Idea:
+--------------------------------------------------
+
+Sentence embeddings capture meaning, not just words.
+
+--------------------------------------------------
+Common Models:
+--------------------------------------------------
+
+- Sentence-BERT (SBERT)
+- Universal Sentence Encoder (USE)
+- Transformer-based encoders
+
+==================================================
+3. Why Embeddings are Important
+==================================================
+
+Embeddings allow machines to:
+
+- Understand semantic meaning
+- Compare text similarity
+- Retrieve relevant documents
+- Power search engines and RAG systems
+
+Without embeddings, retrieval would be keyword-based only.
+
+==================================================
+4. Semantic Similarity
+==================================================
+
+Semantic similarity measures how close two pieces of text are in meaning.
+
+--------------------------------------------------
+How it works:
+--------------------------------------------------
+
+- Convert text into embeddings
+- Compute similarity between vectors
+
+--------------------------------------------------
+Common similarity metrics:
+--------------------------------------------------
+
+1. Cosine Similarity
+- Measures angle between vectors
+- Most commonly used
+
+2. Euclidean Distance
+- Measures straight-line distance between vectors
+
+--------------------------------------------------
+Cosine similarity idea:
+--------------------------------------------------
+
+- Value close to 1 → very similar meaning
+- Value close to 0 → unrelated text
+
+==================================================
+5. Vector Search
+==================================================
+
+Vector search is the process of finding the most similar vectors to a query vector.
+
+--------------------------------------------------
+How it works in RAG:
+--------------------------------------------------
+
+1. Convert documents into embeddings
+2. Store embeddings in a vector database
+3. Convert user query into embedding
+4. Search for nearest vectors
+5. Retrieve top-k relevant documents
+
+--------------------------------------------------
+Common parameter:
+--------------------------------------------------
+
+- top_k = 3 or 5 most similar results
+
+==================================================
+6. Vector Databases
+==================================================
+
+Vector databases are specialized systems for storing and searching embeddings efficiently.
+
+Examples:
+- FAISS
+- Pinecone
+- Weaviate
+- ChromaDB
+
+--------------------------------------------------
+Why FAISS is popular:
+--------------------------------------------------
+
+- Fast
+- Lightweight
+- Works offline
+- Perfect for projects
+
+==================================================
+7. Embeddings in RAG Systems
+==================================================
+
+Embeddings are used in two steps:
+
+1. Offline step:
+   - Embed all documents
+   - Store in vector database
+
+2. Online step:
+   - Embed user query
+   - Retrieve similar documents
+   - Pass them to LLM
+
+==================================================
+8. Importance in Your Project
+==================================================
+
+In your RAG Assistant:
+
+- Embeddings = understanding your documents
+- Vector search = retrieving relevant knowledge
+- Semantic similarity = matching user questions with correct content
+
+==================================================
+9. Key Insights
+==================================================
+
+- Embeddings transform text into meaning-based vectors
+- Semantic similarity compares meaning, not words
+- Vector search powers retrieval in RAG systems
+- FAISS enables fast similarity search
+- This is the core engine of modern AI search systems
