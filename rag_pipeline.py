@@ -1,6 +1,6 @@
 from retrieval.retriever import load_embeddings, build_faiss_index, search
 from llm.llm_client import generate_answer
-from evaluation.metrics import evaluate_rag   # ✅ إضافة التقييم
+from evaluation.metrics import evaluate_rag   
 
 
 def rag_pipeline(query, index, data, k=3):
@@ -24,9 +24,7 @@ if __name__ == "__main__":
     print("\nANSWER:\n")
     print(answer)
 
-    # =========================
-    # 📊 EVALUATION SECTION (NEW)
-    # =========================
+    
 
     evaluation = evaluate_rag(
         query=query,
@@ -34,6 +32,6 @@ if __name__ == "__main__":
         answer=answer
     )
 
-    print("\n📊 EVALUATION RESULTS:")
+    print("\nEVALUATION RESULTS:")
     for k, v in evaluation.items():
         print(f"{k}: {v:.3f}")

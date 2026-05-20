@@ -5,7 +5,7 @@ DATA_PATH = "data/processed"
 
 def load_txt_files(data_path=DATA_PATH):
     """
-    Load all txt files from processed data folder
+    Load all txt files from processed data 
     """
     documents = []
 

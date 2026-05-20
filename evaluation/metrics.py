@@ -1,26 +1,14 @@
-"""
-Evaluation Metrics for RAG Assistant
-------------------------------------
-Improved evaluation system using:
-- Semantic similarity (cosine)
-- Retrieval metrics
-- Answer quality
-"""
 
 from typing import List, Dict
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-# =========================
-# 🧠 ANSWER QUALITY METRICS
-# =========================
+
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 def answer_length_score(answer: str) -> float:
-    """
-    يقيس جودة طول الإجابة
-    """
+    
     if not answer or len(answer.strip()) < 20:
         return 0.0
     if len(answer.strip()) < 100:
@@ -28,9 +16,7 @@ def answer_length_score(answer: str) -> float:
     return 1.0
 
 
-# =========================
-# 🧠 FIXED EMBEDDING (STABLE DIMENSION)
-# =========================
+
 
 def semantic_embed(text: str):
     """
@@ -41,15 +27,11 @@ def semantic_embed(text: str):
 
     return embedding.reshape(1, -1)
 
-# =========================
-# 🧠 GROUNDEDNESS (SEMANTIC)
-# =========================
+
 
 def groundedness_score(answer: str, contexts: List[str]) -> float:
-    """
-    يقيس مدى اعتماد الإجابة على السياق (chunks)
-    باستخدام semantic similarity
-    """
+    
+    
 
     if not answer or not contexts:
         return 0.0
@@ -64,15 +46,10 @@ def groundedness_score(answer: str, contexts: List[str]) -> float:
     return float(max(0.0, min(score, 1.0)))
 
 
-# =========================
-# 🧠 RELEVANCE (SEMANTIC)
-# =========================
+
 
 def relevance_score(query: str, answer: str) -> float:
-    """
-    يقيس مدى ارتباط الإجابة بالسؤال
-    """
-
+    
     if not query or not answer:
         return 0.0
 
@@ -84,9 +61,7 @@ def relevance_score(query: str, answer: str) -> float:
     return float(max(0.0, min(score, 1.0)))
 
 
-# =========================
-# 📦 RETRIEVAL METRICS
-# =========================
+
 
 def precision_at_k(retrieved_chunks: List[str], relevant_chunks: List[str]) -> float:
     """
@@ -118,9 +93,7 @@ def recall_at_k(retrieved_chunks: List[str], relevant_chunks: List[str]) -> floa
     return len(hits) / len(relevant_set)
 
 
-# =========================
-# 📊 MAIN EVALUATION PIPELINE
-# =========================
+
 
 def evaluate_rag(
     query: str,
@@ -128,9 +101,7 @@ def evaluate_rag(
     answer: str,
     relevant_chunks: List[str] = None
 ) -> Dict[str, float]:
-    """
-    التقييم الشامل لنظام RAG
-    """
+    
 
     results = {
         "answer_length_score": answer_length_score(answer),
@@ -138,7 +109,7 @@ def evaluate_rag(
         "relevance_score": relevance_score(query, answer),
     }
 
-    # Retrieval evaluation (optional ground truth)
+    
     if relevant_chunks:
         results["retrieval_precision"] = precision_at_k(
             retrieved_chunks, relevant_chunks
@@ -147,7 +118,7 @@ def evaluate_rag(
             retrieved_chunks, relevant_chunks
         )
 
-    # 🎯 Overall Score (Average Safe)
+    #  Overall Score (Average Safe)
     results["overall_score"] = sum(results.values()) / len(results)
 
     return results
