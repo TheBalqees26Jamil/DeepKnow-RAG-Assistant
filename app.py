@@ -3,6 +3,7 @@ import base64
 from pathlib import Path
 from retrieval.retriever import load_embeddings, build_faiss_index, search
 from llm.llm_client import generate_answer
+from safety.guardrails import is_safe_query
 
 
 st.set_page_config(
@@ -449,9 +450,14 @@ elif st.session_state.page == "main":
     
     if ask and query:
 
+        if not is_safe_query(query):
+            st.error("🚫 This query contains blocked content and cannot be processed.")
+            st.stop()
+
         with st.spinner("Thinking..."):
 
             contexts = search(query, index, data, k=3)
+            
             answer = generate_answer(query, contexts)
 
         
@@ -471,7 +477,7 @@ elif st.session_state.page == "main":
                     f"""
                     <div class='chunk-box'>
                     <b>Chunk {i+1}</b><br>
-                    <b>File:</b> {ctx['file_name']}<br><br>
+                    <b>File:</b> {ctx['file_name']}<<br><br>
                     {ctx['text']}
                     </div>
                     """,
