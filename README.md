@@ -316,11 +316,6 @@ If a query is flagged, the app responds with:
 
 ---
 
-#  Project Status
- Docker deployment coming soon
-
----
-
 ##  Future Improvements
 
 - [ ] Add support for PDF & Markdown ingestion
@@ -328,6 +323,7 @@ If a query is flagged, the app responds with:
 - [ ] Add conversation memory / chat history
 - [ ] Deploy to Hugging Face Spaces or Streamlit Cloud
 - [ ] Add user feedback loop (thumbs up/down on answers)
+- [ ] Add Docker containerization for portable deployment
 
 ---
 
