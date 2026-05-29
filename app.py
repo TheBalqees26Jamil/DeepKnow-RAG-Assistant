@@ -453,7 +453,13 @@ elif st.session_state.page == "main":
                 )
 
                 if response.status_code != 200:
-                    st.error("❌ Backend error occurred")
+                    try:
+                        error_data = response.json()
+                        error_detail = error_data.get("detail", "Unknown error")
+                    except:
+                        error_detail = response.text or "Unknown error"
+                    
+                    st.error(f"❌ Error {response.status_code}: {error_detail}")
                     st.stop()
 
                 result = response.json()
