@@ -1,10 +1,9 @@
 import streamlit as st
 import base64
 from pathlib import Path
-from retrieval.retriever import load_embeddings, build_faiss_index, search
-from llm.llm_client import generate_answer
-from safety.guardrails import is_safe_query
+import requests
 
+API_URL = "http://127.0.0.1:8000/ask"
 
 st.set_page_config(
     page_title="Deep Learning Assistant",
@@ -417,14 +416,6 @@ elif st.session_state.page == "main":
     </style>
     """, unsafe_allow_html=True)
 
-    
-    @st.cache_resource
-    def load_system():
-        data = load_embeddings()
-        index, _ = build_faiss_index(data)
-        return data, index
-
-    data, index = load_system()
 
    
     st.markdown("<div class='title'>Deep Learning RAG Assistant</div>", unsafe_allow_html=True)
@@ -450,16 +441,30 @@ elif st.session_state.page == "main":
     
     if ask and query:
 
-        if not is_safe_query(query):
-            st.error("🚫 This query contains blocked content and cannot be processed.")
-            st.stop()
-
         with st.spinner("Thinking..."):
 
-            contexts = search(query, index, data, k=3)
-            
-            answer = generate_answer(query, contexts)
+            try:
+                response = requests.post(
+                    API_URL,
+                    json={
+                        "query": query,
+                        "show_chunks": show_chunks
+                    }
+                )
 
+                if response.status_code != 200:
+                    st.error("❌ Backend error occurred")
+                    st.stop()
+
+                result = response.json()
+
+                answer = result["answer"]
+                contexts = result.get("retrieved_chunks", [])
+                evaluation = result.get("evaluation", {})
+
+            except Exception as e:
+                st.error(f"❌ Could not connect to API: {e}")
+                st.stop()
         
         st.markdown("<h3 class='section-heading'>Answer</h3>", unsafe_allow_html=True)
 
@@ -477,7 +482,7 @@ elif st.session_state.page == "main":
                     f"""
                     <div class='chunk-box'>
                     <b>Chunk {i+1}</b><br>
-                    <b>File:</b> {ctx['file_name']}<<br><br>
+                    <b>File:</b> {ctx['file_name']}<br><br>
                     {ctx['text']}
                     </div>
                     """,
