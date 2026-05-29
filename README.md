@@ -1,6 +1,6 @@
-# DeepKnow RAG Assistant 
+# DeepKnow RAG Assistant
 
-A fully modular Retrieval-Augmented Generation (RAG) system designed to answer questions from your own knowledge base using Deep Learning concepts. Built with **FastAPI-style modularity**, **FAISS** for vector search, **Google Gemini** for generation, and **Streamlit** for the UI.
+A fully modular Retrieval-Augmented Generation (RAG) system designed to answer questions from your own knowledge base using Deep Learning concepts. Built with **FastAPI** backend, **FAISS** for vector search, **Google Gemini** for generation, and **Streamlit** for the UI.
 
 ---
 
@@ -29,6 +29,11 @@ DeepKnow_RAG_Assistant/
 ├── .gitignore                  # Ignored files/folders
 ├── README.md                   # This file
 ├── lucid.jpg                   # Image for the landing page
+│
+├── api/                        # FastAPI backend
+│   ├── main.py                 # API entry point (FastAPI app)
+│   ├── routes.py               # API endpoints (/ask, /health)
+│   └── schemas.py              # Pydantic request/response models
 │
 ├── data/
 │   ├── processed/              # Raw .txt knowledge base files
@@ -106,34 +111,46 @@ data/processed/
 
 ---
 
-##  Running the Pipeline
+## Running the System
 
-### Step 1: Chunk & Embed
+The system now runs in **two separate processes**: a **FastAPI backend** and a **Streamlit frontend**.
 
+### Step 1: Chunk & Embed (One-time setup)
 ```bash
 python ingestion/chunker.py       # Optional: preview chunks
 python embeddings/embedder.py     # Generate embeddings & save to data/embeddings.pkl
 ```
 
-### Step 2: Test Retrieval
-
+### Step 2: Start the Backend API
 ```bash
-python retrieval/retriever.py
+uvicorn api.main:app --reload 
+```
+> The API will be available at: `http://127.0.0.1:8000`
+
+**Verify it's running:**
+```bash
+curl http://127.0.0.1:8000/health
+```
+Expected response:
+```json
+{"status": "healthy", "service": "DeepKnow RAG API"}
 ```
 
-### Step 3: Test Full RAG Pipeline
-
-```bash
-python rag_pipeline.py
-```
-
-### Step 4: Launch the Web App
-
+### Step 3: Start the Frontend (in a new terminal)
 ```bash
 streamlit run app.py
 ```
+> The app will open at: `http://localhost:8501`
 
-The app will open at: `http://localhost:8501`
+---
+
+## API Endpoints
+
+| Endpoint | Method | Description | Request Body | Response |
+|----------|--------|-------------|--------------|----------|
+| `/` | GET | API status | — | `{"message": "DeepKnow RAG API is running"}` |
+| `/health` | GET | Health check | — | `{"status": "healthy", "service": "DeepKnow RAG API"}` |
+| `/ask` | POST | Ask a question | `{"query": "string", "show_chunks": false}` | `{"answer": "...", "retrieved_chunks": [...], "evaluation": {...}}` |
 
 ---
 
@@ -292,7 +309,9 @@ Blocked query patterns include:
 - `reveal system prompt`, `api key`
 
 If a query is flagged, the app responds with:
-> 🚫 This query contains blocked content and cannot be processed.
+> {"detail": "Blocked unsafe query."}
+And the frontend displays:
+❌ Error 400: Blocked unsafe query
 
 ---
 
@@ -316,14 +335,16 @@ If a query is flagged, the app responds with:
 
 ---
 
-##  Future Improvements
+## Future Improvements
 
 - [ ] Add support for PDF & Markdown ingestion
 - [ ] Implement hybrid search (sparse + dense)
 - [ ] Add conversation memory / chat history
-- [ ] Deploy to Hugging Face Spaces or Streamlit Cloud
+- [ ] Deploy API to cloud (Render, Railway, or AWS)
+- [ ] Deploy Streamlit to Hugging Face Spaces or Streamlit Cloud
 - [ ] Add user feedback loop (thumbs up/down on answers)
 - [ ] Add Docker containerization for portable deployment
+- [ ] Add API authentication (API keys or OAuth2)
 
 ---
 
