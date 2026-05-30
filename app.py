@@ -20,7 +20,8 @@ def get_image_base64(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-image_path = Path(r"C:\Users\DELL\Desktop\Develop_myself\Projects\DeepKnow_RAG_Assistant\lucid.jpg")
+
+image_path = Path(__file__).parent / "lucid.jpg"
 
 if st.session_state.page == "home":
 
