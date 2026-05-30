@@ -346,6 +346,7 @@ And the frontend displays:
 - [ ] Add Docker containerization for portable deployment
 - [ ] Add API authentication (API keys or OAuth2)
 
+
 ---
 
 > **"Knowledge is only valuable when it can be retrieved."** — DeepKnow 
