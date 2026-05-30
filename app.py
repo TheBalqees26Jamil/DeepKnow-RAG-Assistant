@@ -2,8 +2,12 @@ import streamlit as st
 import base64
 from pathlib import Path
 import requests
+import os
 
-API_URL = "http://127.0.0.1:8000/ask"
+API_URL = os.getenv(
+    "API_URL",
+    "http://127.0.0.1:8000/ask"
+)
 
 st.set_page_config(
     page_title="Deep Learning Assistant",
