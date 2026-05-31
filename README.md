@@ -407,6 +407,26 @@ And the frontend displays:
 
 ---
 
+## Monitoring (Prometheus Integration)
+
+The system includes real-time monitoring using Prometheus.
+
+### Metrics exposed:
+- HTTP request count
+- CPU usage
+- Memory usage
+- Garbage collection stats
+
+### Access:
+- Metrics endpoint: http://localhost:8000/metrics
+- Prometheus dashboard: http://localhost:9090
+
+### Example query:
+```promql
+http_requests_total
+
+---
+
 ## Future Improvements
 
 - [ ] Add support for PDF & Markdown ingestion
