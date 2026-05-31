@@ -13,6 +13,7 @@ A fully modular Retrieval-Augmented Generation (RAG) system designed to answer q
 -  **Safety Guardrails** — Block malicious or jailbreak-style queries before processing
 - **Built-in Evaluation** — Compute groundedness, relevance, precision@k, recall@k, and overall score
 -  **Stunning UI** — Dark-themed Streamlit interface with neon aesthetics
+-  **Dockerized** - Multi-container architecture using Docker Compose (FastAPI + Streamlit)
 
 ---
 
@@ -27,8 +28,12 @@ DeepKnow_RAG_Assistant/
 ├── .env.example                # Template for environment variables
 ├── requirements.txt            # Python dependencies
 ├── .gitignore                  # Ignored files/folders
+├── .dockerignore               # Excluded files from Docker build context
 ├── README.md                   # This file
 ├── lucid.jpg                   # Image for the landing page
+├── Dockerfile.api              # FastAPI backend Docker image
+├── Dockerfile.streamlit        # Streamlit frontend Docker image
+├── docker-compose.yml          # Docker Compose orchestration
 │
 ├── api/                        # FastAPI backend
 │   ├── main.py                 # API entry point (FastAPI app)
@@ -61,12 +66,76 @@ DeepKnow_RAG_Assistant/
 
 ---
 
-##  Installation
+## Installation
+
+### Option 1: Docker (Recommended)
+
+#### Prerequisites
+
+- Docker
+- Docker Compose
+
+#### Clone Repository
+
+```bash
+git clone https://github.com/TheBalqees26Jamil/DeepKnow_RAG_Assistant.git
+cd DeepKnow_RAG_Assistant
+```
+
+#### Configure Environment Variables
+
+```bash
+cp .env.example .env
+```
+
+Add your Gemini API key:
+
+```env
+GEMINI_API_KEY=your_api_key
+```
+
+#### Build and Start Services
+
+```bash
+docker-compose up --build
+```
+
+#### Access Application
+
+| Service | URL |
+|----------|----------|
+| Streamlit UI | http://localhost:8501 |
+| FastAPI Docs | http://localhost:8000/docs |
+
+#### Stop Services
+
+```bash
+docker compose down
+```
+#### View Logs
+
+```bash
+docker logs -f deepknow-api
+docker logs -f deepknow-ui
+```
+
+> On the first startup, the embedding model `all-MiniLM-L6-v2` will be downloaded automatically.
+> The backend and frontend run in separate containers and communicate through Docker Compose networking.
+
+```
+┌─────────────────┐         ┌─────────────────┐
+│   Streamlit UI  │────────▶│   FastAPI API   │
+│   Port: 8501    │         │   Port: 8000    │
+│   Service: UI   │         │   Service: API  │
+└─────────────────┘         └─────────────────┘
+```
+
+### Option 2: Local Development
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/DeepKnow_RAG_Assistant.git
+git clone https://github.com/TheBalqees26Jamil/DeepKnow_RAG_Assistant.git
 cd DeepKnow_RAG_Assistant
 ```
 
@@ -79,7 +148,7 @@ pip install -r requirements.txt
 
 > **Note:** `sentence-transformers` will download `all-MiniLM-L6-v2` on first run (~80MB).
 
-### 4. Set up environment variables
+### 3. Set up environment variables
 
 ```bash
 cp .env.example .env
@@ -112,6 +181,7 @@ data/processed/
 ---
 
 ## Running the System
+For local development only.
 
 The system now runs in **two separate processes**: a **FastAPI backend** and a **Streamlit frontend**.
 
@@ -319,11 +389,13 @@ And the frontend displays:
 
 | Layer | Technology |
 |-------|------------|
-| **Frontend** | Streamlit |
-| **Embeddings** | SentenceTransformers (`all-MiniLM-L6-v2`) |
-| **Vector DB** | FAISS (Facebook AI Similarity Search) |
-| **LLM** | Google Gemini (`gemini-flash-lite-latest`) |
-| **Language** | Python 3.10+ |
+| Frontend | Streamlit |
+| Backend API | FastAPI |
+| Embeddings | SentenceTransformers (all-MiniLM-L6-v2) |
+| Vector Search | FAISS |
+| LLM | Google Gemini |
+| Containerization | Docker & Docker Compose |
+| Language | Python 3.12 |
 
 ---
 
@@ -343,7 +415,6 @@ And the frontend displays:
 - [ ] Deploy API to cloud (Render, Railway, or AWS)
 - [ ] Deploy Streamlit to Hugging Face Spaces or Streamlit Cloud
 - [ ] Add user feedback loop (thumbs up/down on answers)
-- [ ] Add Docker containerization for portable deployment
 - [ ] Add API authentication (API keys or OAuth2)
 
 
