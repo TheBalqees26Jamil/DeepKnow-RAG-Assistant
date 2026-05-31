@@ -424,7 +424,7 @@ The system includes real-time monitoring using Prometheus.
 ### Example query:
 ```promql
 http_requests_total
-
+```
 ---
 
 ## Future Improvements
