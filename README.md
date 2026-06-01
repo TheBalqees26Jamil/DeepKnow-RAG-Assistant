@@ -427,6 +427,30 @@ http_requests_total
 ```
 ---
 
+### Drift Detection and Quality Monitoring
+
+Implemented a drift monitoring pipeline to continuously track retrieval and generation quality over time.
+
+Key features:
+
+* Logged groundedness scores
+* Logged relevance scores
+* Stored historical evaluation metrics
+* Enabled performance trend analysis
+* Built a Streamlit drift monitoring dashboard for visualization
+
+This allows early detection of performance degradation and supports long-term monitoring of the RAG system.
+
+### Monitoring Metrics
+Groundedness
+Relevance
+Overall Quality Score
+Outcome
+
+> The system can now track answer quality over time and detect potential degradation in retrieval or generation performance.
+
+---
+
 ## Future Improvements
 
 - [ ] Add support for PDF & Markdown ingestion
