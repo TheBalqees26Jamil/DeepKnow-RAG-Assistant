@@ -4,6 +4,14 @@ import os
 
 LOG_FILE = "monitoring/drift_logs.json"
 
+
+def check_drift(evaluation):
+    groundedness = evaluation.get("groundedness_score", 0)
+    relevance = evaluation.get("relevance_score", 0)
+
+    return groundedness < 0.7 or relevance < 0.6
+
+
 def log_drift(query, answer, contexts, evaluation):
     drift_entry = {
         "timestamp": time.time(),
@@ -15,7 +23,6 @@ def log_drift(query, answer, contexts, evaluation):
 
     os.makedirs("monitoring", exist_ok=True)
 
-    
     if os.path.exists(LOG_FILE):
         try:
             with open(LOG_FILE, "r", encoding="utf-8") as f:
@@ -27,6 +34,5 @@ def log_drift(query, answer, contexts, evaluation):
 
     data.append(drift_entry)
 
-    #
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)

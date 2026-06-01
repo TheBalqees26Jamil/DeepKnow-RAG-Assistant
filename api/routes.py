@@ -1,6 +1,6 @@
 from fastapi import APIRouter , HTTPException
 from monitoring.drift_tracker import log_metrics
-from monitoring.drift_detector import log_drift
+from monitoring.drift_detector import log_drift , check_drift
 
 from retrieval.retriever import (
     load_embeddings,
@@ -58,6 +58,9 @@ def ask_question(request: AskRequest):
         #
         try:
             log_drift(query, answer, contexts, evaluation)
+            if check_drift(evaluation):
+                print("⚠️ DRIFT ALERT: Model quality dropped!")
+            
         except Exception as drift_error:
             print(f"Drift logging error (non-critical): {drift_error}")
 
