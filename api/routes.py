@@ -1,4 +1,6 @@
 from fastapi import APIRouter , HTTPException
+from monitoring.drift_tracker import log_metrics
+from monitoring.drift_detector import log_drift
 
 from retrieval.retriever import (
     load_embeddings,
@@ -35,30 +37,29 @@ def health_check():
 
 @router.post("/ask", response_model=AskResponse)
 def ask_question(request: AskRequest):
-
     query = request.query
 
-    # Safety check
     if not is_safe_query(query):
-        raise HTTPException(
-            status_code=400,
-            detail="Blocked unsafe query."
-        )
+        raise HTTPException(status_code=400, detail="Blocked unsafe query.")
 
     try:
-
-        # Retrieve contexts
         contexts = search(query, index, data, k=3)
-
-        # Generate answer
         answer = generate_answer(query, contexts)
 
-        # Evaluation
+        if answer is None or answer == "":
+            answer = "Unable to generate answer right now."
+
         evaluation = evaluate_rag(
             query=query,
             retrieved_chunks=[c["text"] for c in contexts],
             answer=answer
         )
+
+        #
+        try:
+            log_drift(query, answer, contexts, evaluation)
+        except Exception as drift_error:
+            print(f"Drift logging error (non-critical): {drift_error}")
 
         return {
             "answer": answer,
@@ -66,8 +67,7 @@ def ask_question(request: AskRequest):
             "evaluation": evaluation
         }
 
+    except HTTPException:
+        raise
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=str(e)
-        )
+        raise HTTPException(status_code=500, detail=str(e))
